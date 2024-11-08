@@ -2,6 +2,7 @@
 
 import pygame
 import sys
+from balle import Ball
 
 # Initialiser pygame
 pygame.init()
@@ -19,10 +20,7 @@ white = (255, 255, 255)
 en_cours = True
 clock = pygame.time.Clock()
 
-x_balle = 20
-vitesse_x = 5
-y_balle = 20
-vitesse_y = 5
+ball = Ball()
 
 
 while en_cours:
@@ -32,15 +30,9 @@ while en_cours:
 
     # Remplir l'écran et dessiner la balle
     screen.fill(white)
-    pygame.draw.circle(screen, rouge, (x_balle, y_balle), 20) # (origine, couleur, (posX, posY), rayon)
+    ball.draw_ball(screen)
 
-    x_balle += vitesse_x
-    y_balle += vitesse_y
-    
-    if x_balle > 800 - 20 or x_balle <= 20 :
-        vitesse_x = -vitesse_x
-    elif y_balle > 600 - 20 or y_balle <= 20:
-        vitesse_y = -vitesse_y 
+    ball.moving_ball()
 
     # Rafraîchir l'affichage
     pygame.display.flip()
